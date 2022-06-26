@@ -1,8 +1,10 @@
 import React, { useReducer } from 'react'
-import { Link } from 'react-router-dom'
+
 import axios from 'axios'
 import { useEffect } from 'react';
 import logger from 'use-reducer-logger';
+import Product from '../components/Product';
+import { Row, Col } from 'react-bootstrap'
 
 
 
@@ -61,22 +63,15 @@ function HomeScreen() {
             <div className="products">
                 {loading ? (<div> Loading...</div>) :
                     error ? (<div>{error}</div>) :
-                        (products.map(product => (
-                            <div key={product.slug}>
-                                <div className="product">
-                                    <img src={product.image} alt={product.name} />
-                                    <div className="product-info">
-                                        <Link to={`products/${product.slug}`}>
-                                            <p>{product.name}</p>
-                                        </Link>
-                                        <p> <strong>${product.price}</strong></p>
-                                        <button>Add to cart</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        ))
-                        )
+                        <Row > {
+                            (products.map(product => (
+                                <Col key={product.slug} sm={6} md={4} lg={3}>
+                                    <Product product={product} />
+                                </Col>
+                            ))
+                            )
+                        }
+                        </Row>
                 }
             </div>
         </div>

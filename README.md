@@ -43,4 +43,9 @@
     3. update App.js --> added Bootstrap Navbar
     4. `npm i react-router-bootstrap`
 
+11. Add components  
+    1. Add Product component
+    2. Add Rating component
+    3. use Rating component in Product component
+
 

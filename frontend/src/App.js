@@ -36,7 +36,6 @@ function App() {
             </Routes>
           </Container>
         </main>
-
         <footer className='text-center'>All rights reserved</footer>
       </div>
     </BrowserRouter>
