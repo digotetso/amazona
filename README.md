@@ -37,4 +37,10 @@
     3. get state from useReducer
     4. `npm install use-reducer-logger --force`
 
+10. Add React boostrap
+    1. `npm install react-bootstrap bootstrap`
+    2. `import 'bootstrap/dist/css/bootstrap.min.css'` --> index.css
+    3. update App.js --> added Bootstrap Navbar
+    4. `npm i react-router-bootstrap`
+
 

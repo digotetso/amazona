@@ -56,6 +56,7 @@ function HomeScreen() {
 
     return (
         <div>
+
             <h1 className="heading">Featured products</h1>
             <div className="products">
                 {loading ? (<div> Loading...</div>) :
