@@ -31,5 +31,10 @@
     4. use effect hook
     5. use reducer hook
 
+9. Manage state by  useReducer hook
+    1. define useReducer
+    2. update fetchData func
+    3. get state from useReducer
+    4. `npm install use-reducer-logger --force`
 
-    
+

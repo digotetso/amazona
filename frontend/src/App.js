@@ -6,6 +6,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import './App.css';
+import UseReducer_Ex from './components/UseReducer_Ex';
 
 
 function App() {
