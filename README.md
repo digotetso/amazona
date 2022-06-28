@@ -48,4 +48,6 @@
     2. Add Rating component
     3. use Rating component in Product component
 
-
+12. Create Product details page
+    1. Create product details component
+    2. Create the product details url --> backend (`'/api/product/slug/:slug`), frontend--> `/api/product/slug/${slug}`
