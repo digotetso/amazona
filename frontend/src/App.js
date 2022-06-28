@@ -3,8 +3,8 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 
 
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
+import HomeScreen from './pages/HomeScreen';
+import ProductScreen from './pages/ProductDetails';
 import './App.css';
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'

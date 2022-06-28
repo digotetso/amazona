@@ -18,7 +18,8 @@ code {
 
 
 main {
-  flex: 1;  
+  flex: 1;
+  margin-top: 20px;  
 }
 
 header {
@@ -59,9 +60,14 @@ header a {
 
 .btn-primary {
   background-color: #f0c040;
-  color: bl;
+  color: black;
+  outline-color: #f0c040 ;
 }
 
-.rating  span{
+.rating {
   color: #f0c040;
+}
+
+.img-large {
+  max-width: 100%;
 }

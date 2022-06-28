@@ -58,6 +58,8 @@ const Rating = ({ rating, numReviews }) => {
 
                     } ></i>
             </span>
+
+            {`${numReviews} reviews`}
         </div>
     )
 }
