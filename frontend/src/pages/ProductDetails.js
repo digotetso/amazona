@@ -13,6 +13,9 @@ import Badge from 'react-bootstrap/Badge'
 import axios from 'axios'
 
 import Rating from '../components/Rating'
+import { getError } from '../utils'
+import LoadingBox from '../components/LoadingBox'
+import MessageBox from '../components/MessageBox'
 
 
 function reducer(state, action) {
@@ -30,8 +33,6 @@ function reducer(state, action) {
 }
 
 
-
-
 export default function ProductDetails() {
     const params = useParams()
     const { slug } = params
@@ -40,7 +41,7 @@ export default function ProductDetails() {
     const [{ product, loading, error }, dispatch] = useReducer(reducer,
         {
             product: [],
-            loading: true,
+            loading: false,
             error: ''
 
         }
@@ -56,7 +57,11 @@ export default function ProductDetails() {
                 dispatch({ type: 'FETCH_SUCCESS', payload: results.data })
 
             } catch (error) {
-                dispatch({ type: 'FETCH_FAILED', payload: error.message })
+                console.log(getError(error))
+                console.log(error.message)
+                //dispatch({ type: 'FETCH_FAILED', payload: error.message });
+                dispatch({ type: 'FETCH_FAILED', payload: getError(error) });
+
             }
 
         }
@@ -64,49 +69,55 @@ export default function ProductDetails() {
         fetchData()
     }
 
-        , [slug])
+        , [slug]) // when slug changes re-render the component 
 
 
-    return (
-        <Row className=''>
-            <Col md={6}>
-                <img className='img-large' src={product.image} alt={product.name}></img>
-            </Col>
-            <Col md={3}>
-                <ListGroup variant="flush">
-                    <ListGroup.Item> <h3>{product.name}</h3></ListGroup.Item>
-                    <ListGroup.Item><Rating rating={product.rating} numReviews={product.numReviews} /></ListGroup.Item>
-                    <ListGroup.Item> Price : ${product.price} </ListGroup.Item>
-                    <ListGroup.Item> Description: {product.description} </ListGroup.Item>
-                </ListGroup>
-            </Col>
-            <Col md={3} className=''>
-                <Card>
-                    <Card.Body>
-                        <ListGroup variant="flush">
-                            <ListGroup.Item>
-                                <Row>
-                                    <Col>Price</Col>
-                                    <Col>${product.price}</Col>
-                                </Row>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                <Row>
-                                    <Col>Status</Col>
-                                    <Col>{product.countInStock > 0 ? (<Badge bg="success"> In Stock {` (${product.countInStock})`}</Badge>) : (<Badge bg="danger">Sold Out</Badge>)}</Col>
-                                </Row>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                <Row>
-                                    <Button className='btn-primary'><strong>ADD TO CART</strong></Button>
-                                </Row>
-                            </ListGroup.Item>
-                        </ListGroup>
-                    </Card.Body>
-                </Card>
+    return (<>
+        {
+            loading ? (<LoadingBox />)
+                : error ? (<MessageBox variant="danger">{error}</MessageBox>)
+                    : (<Row className=''>
+                        <Col md={6}>
+                            <img className='img-large' src={product.image} alt={product.name}></img>
+                        </Col>
+                        <Col md={3}>
+                            <ListGroup variant="flush">
+                                <ListGroup.Item> <h3>{product.name}</h3></ListGroup.Item>
+                                <ListGroup.Item><Rating rating={product.rating} numReviews={product.numReviews} /></ListGroup.Item>
+                                <ListGroup.Item> Price : ${product.price} </ListGroup.Item>
+                                <ListGroup.Item> Description: {product.description} </ListGroup.Item>
+                            </ListGroup>
+                        </Col>
+                        <Col md={3} className=''>
+                            <Card>
+                                <Card.Body>
+                                    <ListGroup variant="flush">
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>Price</Col>
+                                                <Col>${product.price}</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>Status</Col>
+                                                <Col>{product.countInStock > 0 ? (<Badge bg="success"> In Stock {` (${product.countInStock})`}</Badge>) : (<Badge bg="danger">Sold Out</Badge>)}</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Button className='btn-primary'><strong>ADD TO CART</strong></Button>
+                                            </Row>
+                                        </ListGroup.Item>
+                                    </ListGroup>
+                                </Card.Body>
+                            </Card>
 
-            </Col>
+                        </Col>
 
-        </Row>
+                    </Row>)
+
+        }
+    </>
     )
 }

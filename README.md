@@ -51,3 +51,9 @@
 12. Create Product details page
     1. Create product details component
     2. Create the product details url --> backend (`'/api/product/slug/:slug`), frontend--> `/api/product/slug/${slug}`
+
+13. Create loading and massage component
+    1. create loading component
+    2. use Loading Component
+    3. create a Massage Component
+    4. create utils.js to define `getError` function 
