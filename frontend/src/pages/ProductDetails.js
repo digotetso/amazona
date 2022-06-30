@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useReducer, useEffect } from 'react'
+import { useContext, useReducer, useEffect } from 'react'
 
 // React-Bootstrap Components
 import Row from 'react-bootstrap/Row'
@@ -16,6 +16,8 @@ import Rating from '../components/Rating'
 import { getError } from '../utils'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
+
+import { store } from '../store'
 
 
 function reducer(state, action) {
@@ -37,7 +39,6 @@ export default function ProductDetails() {
     const params = useParams()
     const { slug } = params
 
-
     const [{ product, loading, error }, dispatch] = useReducer(reducer,
         {
             product: [],
@@ -46,6 +47,19 @@ export default function ProductDetails() {
 
         }
     )
+
+    // use the context i have created
+    const { state, dispatch: ctxdispatch } = useContext(store)
+
+    const addToCartHandler = () => {
+        ctxdispatch({
+            type: "ADD_TO_CART",
+            payload: { ...product, quantity: 1 }
+        })
+    }
+
+
+
 
     useEffect(() => {
 
@@ -106,7 +120,7 @@ export default function ProductDetails() {
                                         </ListGroup.Item>
                                         <ListGroup.Item>
                                             <Row>
-                                                <Button className='btn-primary'><strong>ADD TO CART</strong></Button>
+                                                <Button className='btn-primary' onClick={addToCartHandler}><strong>ADD TO CART</strong></Button>
                                             </Row>
                                         </ListGroup.Item>
                                     </ListGroup>

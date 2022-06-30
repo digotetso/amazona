@@ -57,3 +57,9 @@
     2. use Loading Component
     3. create a Massage Component
     4. create utils.js to define `getError` function 
+
+14. Implement Add to cart
+    1. create React context (`const store = createContext()`) --> to save cart item in a global state
+    2. define reducer -> `const reducer = (state,action) => {}`
+    3. create store provider --> `<store.provider value={value}>{childred}</store.provider>`
+    4. define click handler for "Add To Cart" button
