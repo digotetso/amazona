@@ -14,6 +14,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useContext } from 'react';
 
 import { store } from './store.js'
+import CartPage from './pages/CartPage';
 
 
 
@@ -51,6 +52,7 @@ function App() {
             <Routes>
               <Route path='/products/:slug' element={< ProductScreen />} />
               <Route path='/' element={<HomeScreen />} />
+              <Route path='/cart' element={<CartPage />} />
             </Routes>
           </Container>
         </main>

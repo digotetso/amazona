@@ -68,4 +68,9 @@
     1. check if item exist in cart
     2. check if there is enough stock left
 
+16. Create cart Page
+    1. create 2 columns
+    2. display items list
+    3. create action column
+
 

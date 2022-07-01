@@ -71,3 +71,16 @@ header a {
 .img-large {
   max-width: 100%;
 }
+
+.cart-image {
+  /* display: block; */
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+}
+
+
+.img-thumbnail {
+  height: 80px;
+}

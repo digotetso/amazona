@@ -1,6 +1,7 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useContext, useReducer, useEffect } from 'react'
+
 
 // React-Bootstrap Components
 import Row from 'react-bootstrap/Row'
@@ -18,6 +19,7 @@ import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
 
 import { store } from '../store'
+
 
 
 function reducer(state, action) {
@@ -38,6 +40,7 @@ function reducer(state, action) {
 export default function ProductDetails() {
     const params = useParams()
     const { slug } = params
+    const navigate = useNavigate()
 
     const [{ product, loading, error }, dispatch] = useReducer(reducer,
         {
@@ -68,6 +71,8 @@ export default function ProductDetails() {
             type: "ADD_TO_CART",
             payload: { ...product, quantity }
         })
+
+        navigate('/cart')
 
 
     }
