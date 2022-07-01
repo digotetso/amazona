@@ -63,3 +63,9 @@
     2. define reducer -> `const reducer = (state,action) => {}`
     3. create store provider --> `<store.provider value={value}>{childred}</store.provider>`
     4. define click handler for "Add To Cart" button
+
+15. Add cart functionality 
+    1. check if item exist in cart
+    2. check if there is enough stock left
+
+

@@ -51,11 +51,25 @@ export default function ProductDetails() {
     // use the context i have created
     const { state, dispatch: ctxdispatch } = useContext(store)
 
-    const addToCartHandler = () => {
+    const addToCartHandler = async () => {
+        const { cart } = state
+
+        const existItem = cart.cartItems.find((x) => x._id === product._id)
+        const quantity = existItem ? existItem.quantity + 1 : 1
+
+        const { data } = await axios.get(`/api/product/${product._id}`)
+
+
+        if (data.countInStock < quantity) {
+            window.alert('This product is out of stock')
+        }
+
         ctxdispatch({
             type: "ADD_TO_CART",
-            payload: { ...product, quantity: 1 }
+            payload: { ...product, quantity }
         })
+
+
     }
 
 
